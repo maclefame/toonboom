@@ -1,0 +1,22 @@
+// Sets comp to passthrough
+function passThroughComp()
+{
+	var selNodes = selection.numberOfNodesSelected();
+
+	if(selNodes >= 1)
+	{
+		for(var n =0; n < selNodes; n++)
+		{
+			var selNode = selection.selectedNode(n);
+			if(node.type(selNode) == "COMPOSITE")
+			{
+				node.setTextAttr(selNode, "compositeMode", 0, "compositePassthrough");
+			}
+		}
+	}
+
+	else
+	{
+	MessageBox.information("No nodes selected");
+	}
+}
