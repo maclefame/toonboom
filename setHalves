@@ -1,0 +1,25 @@
+//places blanks between cells in selection range
+function setHalves()
+	{
+	scene.beginUndoRedoAccum("setHalves");
+
+	var checkNode = selection.selectedNode(0);
+	var numFrames = selection.numberOfFrames();
+	var startFrame = selection.startFrame();
+	var currentFrame = startFrame + (numFrames-1);
+		
+	for (var t = 0; t < numFrames; t++)
+		{
+		frame.setCurrent(currentFrame);
+		Action.perform("onActionAddExposure()", "timelineView");
+		currentFrame = currentFrame-1;
+		}
+	currentFrame = startFrame+1;
+	for (var i = 0; i < t; i++)
+		{
+		frame.setCurrent(currentFrame);
+		Action.perform("onActionClearExposure()", "timelineView");
+		currentFrame = currentFrame + 2;
+		}
+	scene.endUndoRedoAccum();
+	}
